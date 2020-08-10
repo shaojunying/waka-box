@@ -50,7 +50,7 @@ async function updateGist(stats) {
     await octokit.gists.update({
       gist_id: gistId,
       files: {
-        [filename]: {
+        [`📊 Weekly development breakdown`]: {
           filename: `📊 Weekly development breakdown`,
           content: lines.join("\n")
         }
