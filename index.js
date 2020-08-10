@@ -28,7 +28,6 @@ async function updateGist(stats) {
   const lines = [];
   for (let i = 0; i < Math.min(stats.data.languages.length, 5); i++) {
     const data = stats.data.languages[i];
-    console.log("data");
     const { name, percent, text: time } = data;
 
     const line = [
@@ -37,20 +36,18 @@ async function updateGist(stats) {
       generateBarChart(percent, 21),
       String(percent.toFixed(1)).padStart(5) + "%"
     ];
-    console.log(line);
 
     lines.push(line.join(" "));
   }
-  lines = ["Edited from VS Code"];
   if (lines.length == 0) return;
 
   try {
     // Get original filename to update that same file
-    // const filename = Object.keys(gist.data.files)[0];
+    const filename = Object.keys(gist.data.files)[0];
     await octokit.gists.update({
       gist_id: gistId,
       files: {
-        [`📊 Weekly development breakdown`]: {
+        [filename]: {
           filename: `📊 Weekly development breakdown`,
           content: lines.join("\n")
         }
