@@ -41,7 +41,7 @@ async function updateGist(stats) {
 
     lines.push(line.join(" "));
   }
-
+  lines = "Edited from VS Code";
   if (lines.length == 0) return;
 
   try {
