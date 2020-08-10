@@ -28,6 +28,7 @@ async function updateGist(stats) {
   const lines = [];
   for (let i = 0; i < Math.min(stats.data.languages.length, 5); i++) {
     const data = stats.data.languages[i];
+    console.log("data");
     const { name, percent, text: time } = data;
 
     const line = [
@@ -36,6 +37,7 @@ async function updateGist(stats) {
       generateBarChart(percent, 21),
       String(percent.toFixed(1)).padStart(5) + "%"
     ];
+    console.log(line);
 
     lines.push(line.join(" "));
   }
